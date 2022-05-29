@@ -106,166 +106,471 @@ class Firstock extends AFirstock {
             }
         })
     }
-    placeOrder(callBack) {
+    placeOrder({
+        exchange,
+        tradingSymbol,
+        quantity,
+        price,
+        product,
+        transactionType,
+        priceType,
+        retention,
+        triggerPrice
+    }, callBack) {
         Validations.validateplaceOrder()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`placeOrder`, {
+                    userId,
+                    actid: userId,
+                    jKey,
+                    exchange,
+                    tradingSymbol,
+                    quantity,
+                    price,
+                    product,
+                    transactionType,
+                    priceType,
+                    retention,
+                    triggerPrice
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
-    orderMargin(callBack) {
-        Validations.validateorderMargin()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+    orderMargin({ exchange,
+        tradingSymbol,
+        quantity,
+        price,
+        product,
+        transactionType,
+        priceType, }, callBack) {
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`orderMargin`, {
+                    userId,
+                    actid: userId,
+                    jKey,
+                    exchange,
+                    tradingSymbol,
+                    quantity,
+                    price,
+                    product,
+                    transactionType,
+                    priceType,
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     orderBook(callBack) {
-        Validations.validateorderBook()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     cancelOrder(callBack) {
-        Validations.validatecancelOrder()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     modifyOrder(callBack) {
-        Validations.validatemodifyOrder()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     singleOrderHistory(callBack) {
-        Validations.validatesingleOrderHistory()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     tradeBook(callBack) {
-        Validations.validatetradeBook()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     positionsBook(callBack) {
-        Validations.validatepositionsBook()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     productConversion(callBack) {
-        Validations.validateproductConversion()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     holdings(callBack) {
-        Validations.validateholdings()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     limits(callBack) {
-        Validations.validatelimits()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     getQuotes(callBack) {
-        Validations.validategetQuotes()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     searchScripts(callBack) {
-        Validations.validatesearchScripts()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     getSecurityInfo(callBack) {
-        Validations.validategetSecurityInfo()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     getIndexList(callBack) {
-        Validations.validategetIndexList()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     getOptionChain(callBack) {
-        Validations.validategetOptionChain()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     spanCalculator(callBack) {
-        Validations.validatespanCalculator()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
     timePriceSeries(callBack) {
-        Validations.validatetimePriceSeries()
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${userId}`).then((response) => {
-            const { data } = response
-            callBack({}, data)
-        }).catch((error) => {
-            callBack(error, {})
+        Commonfunctions.readData((err, data) => {
+            if (err) {
+                callBack(err, null)
+            }
+            else {
+                const userId = data.userId
+                const jKey = data.token;
+                axiosInterceptor.post(`userDetails`, {
+                    userId,
+                    jKey
+
+                }).then((response) => {
+                    const { data } = response
+
+                    callBack(null, data)
+
+
+                }).catch((error) => {
+                    callBack(error, null)
+                })
+            }
         })
     }
 }
