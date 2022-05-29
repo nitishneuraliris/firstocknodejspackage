@@ -197,7 +197,7 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`orderBook`, {
                     userId,
                     jKey
 
@@ -213,7 +213,7 @@ class Firstock extends AFirstock {
             }
         })
     }
-    cancelOrder(callBack) {
+    cancelOrder({ norenordno }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -221,9 +221,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`cancelOrder`, {
                     userId,
-                    jKey
+                    jKey,
+                    norenordno
 
                 }).then((response) => {
                     const { data } = response
@@ -237,7 +238,12 @@ class Firstock extends AFirstock {
             }
         })
     }
-    modifyOrder(callBack) {
+    modifyOrder({
+        norenordno,
+        price,
+        quantity,
+        triggerPrice,
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -245,9 +251,13 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`modifyOrder`, {
                     userId,
-                    jKey
+                    jKey,
+                    norenordno,
+                    price,
+                    quantity,
+                    triggerPrice,
 
                 }).then((response) => {
                     const { data } = response
@@ -261,7 +271,7 @@ class Firstock extends AFirstock {
             }
         })
     }
-    singleOrderHistory(callBack) {
+    singleOrderHistory({ norenordno }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -269,9 +279,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`singleOrderList`, {
                     userId,
-                    jKey
+                    jKey,
+                    norenordno
 
                 }).then((response) => {
                     const { data } = response
@@ -293,9 +304,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`tradeBook`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId
 
                 }).then((response) => {
                     const { data } = response
@@ -317,9 +329,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`positionBook`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId
 
                 }).then((response) => {
                     const { data } = response
@@ -333,7 +346,15 @@ class Firstock extends AFirstock {
             }
         })
     }
-    productConversion(callBack) {
+    productConversion({
+        exchange,
+        tradingSymbol,
+        quantity,
+        product,
+        transactionType,
+        positionType,
+        previousProduct,
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -341,9 +362,17 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`productConversion`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId,
+                    exchange,
+                    tradingSymbol,
+                    quantity,
+                    product,
+                    transactionType,
+                    positionType,
+                    previousProduct,
 
                 }).then((response) => {
                     const { data } = response
@@ -357,7 +386,7 @@ class Firstock extends AFirstock {
             }
         })
     }
-    holdings(callBack) {
+    holdings({ product }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -365,9 +394,11 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`holding`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId,
+                    product
 
                 }).then((response) => {
                     const { data } = response
@@ -389,9 +420,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`limit`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId
 
                 }).then((response) => {
                     const { data } = response
@@ -405,7 +437,10 @@ class Firstock extends AFirstock {
             }
         })
     }
-    getQuotes(callBack) {
+    getQuotes({
+        exchange,
+        token
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -413,9 +448,11 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`getQuotes`, {
                     userId,
-                    jKey
+                    jKey,
+                    exchange,
+                    token
 
                 }).then((response) => {
                     const { data } = response
@@ -429,7 +466,7 @@ class Firstock extends AFirstock {
             }
         })
     }
-    searchScripts(callBack) {
+    searchScripts({ stext }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -437,9 +474,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`searchScrips`, {
                     userId,
-                    jKey
+                    jKey,
+                    stext
 
                 }).then((response) => {
                     const { data } = response
@@ -453,7 +491,10 @@ class Firstock extends AFirstock {
             }
         })
     }
-    getSecurityInfo(callBack) {
+    getSecurityInfo({
+        exchange,
+        token
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -461,9 +502,11 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`securityInfo`, {
                     userId,
-                    jKey
+                    jKey,
+                    exchange,
+                    token
 
                 }).then((response) => {
                     const { data } = response
@@ -477,7 +520,9 @@ class Firstock extends AFirstock {
             }
         })
     }
-    getIndexList(callBack) {
+    getIndexList({
+        exchange
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -485,9 +530,10 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`indexList`, {
                     userId,
-                    jKey
+                    jKey,
+                    exchange
 
                 }).then((response) => {
                     const { data } = response
@@ -501,7 +547,12 @@ class Firstock extends AFirstock {
             }
         })
     }
-    getOptionChain(callBack) {
+    getOptionChain({
+        exchange,
+        tradingSymbol,
+        strikePrice,
+        count,
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -509,9 +560,13 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`optionChain`, {
                     userId,
-                    jKey
+                    jKey,
+                    exchange,
+                    tradingSymbol,
+                    strikePrice,
+                    count,
 
                 }).then((response) => {
                     const { data } = response
@@ -525,7 +580,17 @@ class Firstock extends AFirstock {
             }
         })
     }
-    spanCalculator(callBack) {
+    spanCalculator({
+        exchange,
+        instname,
+        symbolName,
+        expd,
+        optt,
+        strikePrice,
+        netQuantity,
+        buyQuantity,
+        sellQuantity,
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -533,9 +598,19 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`spanCalculators`, {
                     userId,
-                    jKey
+                    jKey,
+                    actid: userId,
+                    exchange,
+                    instname,
+                    symbolName,
+                    expd,
+                    optt,
+                    strikePrice,
+                    netQuantity,
+                    buyQuantity,
+                    sellQuantity,
 
                 }).then((response) => {
                     const { data } = response
@@ -549,7 +624,12 @@ class Firstock extends AFirstock {
             }
         })
     }
-    timePriceSeries(callBack) {
+    timePriceSeries({
+        exchange,
+        token,
+        endtime,
+        starttime,
+    }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
@@ -557,9 +637,13 @@ class Firstock extends AFirstock {
             else {
                 const userId = data.userId
                 const jKey = data.token;
-                axiosInterceptor.post(`userDetails`, {
+                axiosInterceptor.post(`timePriceSeries`, {
                     userId,
-                    jKey
+                    jKey,
+                    exchange,
+                    token,
+                    endtime,
+                    starttime,
 
                 }).then((response) => {
                     const { data } = response
