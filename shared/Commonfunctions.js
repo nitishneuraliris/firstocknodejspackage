@@ -1,13 +1,15 @@
 const fs = require('fs');
 
-const saveData = (data, file, callback) => {
 
+const saveData = (data, file, callback) => {
+    const path = "../config.json"
     const jsonData = JSON.stringify(data, null, 2)
-    fs.writeFile("config.json", jsonData, callback)
+    fs.writeFile(path, jsonData, callback)
 }
 
 const readData = (callback) => {
-    fs.readFile("config.json", 'utf-8', (err, jsonString) => {
+    const path = "../config.json"
+    fs.readFile(path, 'utf-8', (err, jsonString) => {
         if (err) {
             callback(err, null)
         }
