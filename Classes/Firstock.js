@@ -46,7 +46,7 @@ class Firstock extends AFirstock {
             Commonfunctions.saveData({ token: data.susertoken, userId: data.actid }, "config.json", finished)
 
         }).catch((error) => {
-           callBack(error.message,null)
+            callBack(error.message, null)
         })
     }
     logout(callBack) {
@@ -56,8 +56,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId;
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`logout`, {
                     userId,
                     jKey
@@ -73,10 +73,12 @@ class Firstock extends AFirstock {
                             callBack(null, data)
                         }
                     }
+                    this.userId = ""
+                    this.token = ""
                     Commonfunctions.saveData({ token: "", userId: "" }, "config.json", finished)
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -88,8 +90,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`userDetails`, {
                     userId,
                     jKey
@@ -101,7 +103,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -115,6 +117,7 @@ class Firstock extends AFirstock {
         transactionType,
         priceType,
         retention,
+        remarks,
         triggerPrice
     }, callBack) {
         Validations.validateplaceOrder()
@@ -123,8 +126,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`placeOrder`, {
                     userId,
                     actid: userId,
@@ -137,6 +140,7 @@ class Firstock extends AFirstock {
                     transactionType,
                     priceType,
                     retention,
+                    remarks,
                     triggerPrice
 
                 }).then((response) => {
@@ -146,7 +150,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -163,8 +167,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`orderMargin`, {
                     userId,
                     actid: userId,
@@ -184,7 +188,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -195,8 +199,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`orderBook`, {
                     userId,
                     jKey
@@ -208,7 +212,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -219,8 +223,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`cancelOrder`, {
                     userId,
                     jKey,
@@ -233,7 +237,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -243,22 +247,27 @@ class Firstock extends AFirstock {
         price,
         quantity,
         triggerPrice,
+        tradingSymbol,
+        exchange,
+        priceType
     }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`modifyOrder`, {
                     userId,
                     jKey,
-                    norenordno,
-                    price,
                     quantity,
+                    price,
                     triggerPrice,
-
+                    norenordno,
+                    exchange,
+                    tradingSymbol,
+                    priceType
                 }).then((response) => {
                     const { data } = response
 
@@ -266,7 +275,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -277,8 +286,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`singleOrderHistory`, {
                     userId,
                     jKey,
@@ -291,7 +300,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -302,8 +311,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`tradeBook`, {
                     userId,
                     jKey,
@@ -316,7 +325,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -327,8 +336,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`positionBook`, {
                     userId,
                     jKey,
@@ -341,7 +350,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -360,8 +369,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`productConversion`, {
                     userId,
                     jKey,
@@ -381,7 +390,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -392,8 +401,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`holding`, {
                     userId,
                     jKey,
@@ -407,7 +416,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -418,8 +427,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`limit`, {
                     userId,
                     jKey,
@@ -432,7 +441,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -446,8 +455,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`getQuotes`, {
                     userId,
                     jKey,
@@ -461,7 +470,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -472,8 +481,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`searchScrips`, {
                     userId,
                     jKey,
@@ -486,7 +495,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -500,8 +509,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`securityInfo`, {
                     userId,
                     jKey,
@@ -515,7 +524,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -528,8 +537,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`indexList`, {
                     userId,
                     jKey,
@@ -542,7 +551,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -558,8 +567,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`optionChain`, {
                     userId,
                     jKey,
@@ -575,7 +584,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -590,14 +599,15 @@ class Firstock extends AFirstock {
         netQuantity,
         buyQuantity,
         sellQuantity,
+        product,
     }, callBack) {
         Commonfunctions.readData((err, data) => {
             if (err) {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`spanCalculators`, {
                     userId,
                     jKey,
@@ -611,6 +621,7 @@ class Firstock extends AFirstock {
                     netQuantity,
                     buyQuantity,
                     sellQuantity,
+                    product
 
                 }).then((response) => {
                     const { data } = response
@@ -619,7 +630,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
@@ -635,8 +646,8 @@ class Firstock extends AFirstock {
                 callBack(err, null)
             }
             else {
-                const userId = data.userId
-                const jKey = data.token;
+                const userId = data.userId || this.userId
+                const jKey = data.token || this.token;
                 axiosInterceptor.post(`timePriceSeries`, {
                     userId,
                     jKey,
@@ -652,7 +663,7 @@ class Firstock extends AFirstock {
 
 
                 }).catch((error) => {
-                   callBack(error.message,null)
+                    callBack(error.message, null)
                 })
             }
         })
